@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+public partial class G {
+	public static GameObject HNV_lineParent;
+}
+
 public class HContentCtrl : MonoBehaviour {
 	private static float sm_scaleSpeed = 0.05f;
 	private static float sm_scaleMin = 0.001f;
@@ -17,6 +21,12 @@ public class HContentCtrl : MonoBehaviour {
 	private Vector3 m_midDragNodePos = new Vector3();
 
 	#region Life
+
+	private void Start() {
+		if (G.HNV_lineParent == null) {
+			G.HNV_lineParent = GameObject.Find("UI/NodeView/Content");
+		}
+	}
 
 	private void OnEnable() {
 		m_isMouseEnter = false;

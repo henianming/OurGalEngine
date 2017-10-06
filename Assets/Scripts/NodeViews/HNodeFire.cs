@@ -2,7 +2,7 @@
 
 class HNodeFire : HNode {
 	HNode m_targetNode;
-	HLine m_line;
+	HLineLinked m_line;
 
 	#region Life
 
@@ -19,6 +19,18 @@ class HNodeFire : HNode {
 	}
 
 	#endregion
+
+	override public void ClearLink(HNode other) {
+		if (m_targetNode != other) {
+			G.Error("target != other");
+			return;
+		}
+
+		m_targetNode = null;
+		if (m_line != null) {
+			m_line = null;
+		}
+	}
 
 	override protected void LineToOther(HNode other) {
 		GameObject selfRoot = GetNodeRoot();
